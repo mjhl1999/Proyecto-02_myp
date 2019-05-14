@@ -29,7 +29,7 @@ public class Cliente{
 
   /**
 	* Define el nombre del cliente.
-	* @param nombre el nombre del cliente.
+  * @param nombre el nombre del cliente.
 	*/
   public void setNombre(String nombre){
     this.nombre = nombre;
@@ -37,14 +37,14 @@ public class Cliente{
 
   /**
 	* Método que nos regresa el nombre del cliente.
-	* @return el nombre del cliente.
+  * @return el nombre del cliente.
 	*/
   public String getNombre(){
     return nombre;
   }
 
   /**
-	* Define el número de cuenta del cliente.
+  * Define el número de cuenta del cliente.
 	* @param cuenta el número de cuenta del cliente.
 	*/
   public void setCuenta(int cuenta){
@@ -52,7 +52,7 @@ public class Cliente{
   }
 
   /**
-	* Método que nos regresa el número de cuenta del cliente.
+  * Método que nos regresa el número de cuenta del cliente.
 	* @return el número de cuenta del cliente.
 	*/
   public int getCuenta(){

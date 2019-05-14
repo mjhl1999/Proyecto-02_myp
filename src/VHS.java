@@ -16,7 +16,7 @@ public class VHS{
 	// El año del VHS.
 	int año;
 	// El director.
-  String director;
+	String director;
 	// Nos dice si hay existencias en la tienda.
 	boolean disponibilidad;
 	// Precio de renta/venta.
@@ -24,8 +24,8 @@ public class VHS{
 
 
 	// Constructor.
-	public VHS(int id, String nombre, int año, director, boolean disponibilidad,
-																																double precio){
+	public VHS(int id, String nombre, int año, String director, boolean disponibilidad,
+						double precio){
 		this.id = id;
 		this.nombre = nombre;
 		this.año = año;
