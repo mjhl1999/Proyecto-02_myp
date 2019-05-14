@@ -25,13 +25,22 @@ public class VHS{
 
 	// Constructor.
 	public VHS(int id, String nombre, int año, director, boolean disponibilidad,
-							double precio){
+																																double precio){
 		this.id = id;
 		this.nombre = nombre;
 		this.año = año;
 		this.director = director;
 		this.disponibilidad = disponibilidad;
 		this.precio = precio;
+	}
+
+
+	/**
+	* Define el Id del VHS.
+	* @param id el id del VHS.
+	*/
+	public void setId(int id){
+		this.id = id;
 	}
 
 	/**
@@ -43,11 +52,11 @@ public class VHS{
 	}
 
 	/**
-	* Define el Id del VHS.
-	* @param id el id del VHS.
+	* Define el nombre del VHS.
+	* @param nombre el nombre del VHS.
 	*/
-	public void setId(int id){
-		this.id = id;
+	public void setNombre(String nombre){
+		this.nombre = nombre;
 	}
 
 	/**
@@ -59,11 +68,11 @@ public class VHS{
 	}
 
 	/**
-	* Define el nombre del VHS.
-	* @param nombre el nombre del VHS.
+	* Define el año del VHS.
+	* @param año el año del VHS.
 	*/
-	public void setNombre(String nombre){
-		this.nombre = nombre;
+	public void setAño(int año){
+		this.año = año;
 	}
 
 	/**
@@ -75,11 +84,11 @@ public class VHS{
 	}
 
 	/**
-	* Define el año del VHS.
-	* @param año el año del VHS.
+	* Define el director del VHS.
+	* @param director el director del VHS.
 	*/
-	public void setAño(int año){
-		this.año = año;
+	public void setDirector(String director){
+		this.director = director;
 	}
 
 	/**
@@ -91,11 +100,11 @@ public class VHS{
 	}
 
 	/**
-	* Define el director del VHS.
-	* @param director el director del VHS.
+	* Define la disponibilidad del VHS.
+	* @param disponibilidad la disponibilidad del VHS.
 	*/
-	public void setDirector(String director){
-		this.director = director;
+	public void setDisponibilidad(boolean disponibilidad){
+		this.disponibilidad = disponibilidad;
 	}
 
 	/**
@@ -107,11 +116,11 @@ public class VHS{
 	}
 
 	/**
-	* Define la disponibilidad del VHS.
-	* @param disponibilidad la disponibilidad del VHS.
+	* Define el año del VHS.
+	* @param año el año del VHS.
 	*/
-	public void setDisponibilidad(boolean disponibilidad){
-		this.disponibilidad = disponibilidad;
+	public void setPrecio(double precio){
+		this.precio = precio;
 	}
 
 	/**
@@ -120,14 +129,6 @@ public class VHS{
 	*/
 	public double getPrecio(){
 		return precio;
-	}
-
-	/**
-	* Define el año del VHS.
-	* @param año el año del VHS.
-	*/
-	public void setPrecio(double precio){
-		this.precio = precio;
 	}
 
 }
