@@ -1,4 +1,8 @@
-public class VHS{
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+public class VHS implements Pelicula{
 /**
 * Clase para definir como será un VHS con todas sus propiedades como lo pueden ser:
 -> id: Un identificador unico por VHS.
@@ -18,13 +22,13 @@ public class VHS{
 	// El director.
 	String director;
 	// Nos dice si hay existencias en la tienda.
-	boolean disponibilidad;
+	String disponibilidad;
 	// Precio de renta/venta.
 	double precio;
 
 
 	// Constructor.
-	public VHS(int id, String nombre, int año, String director, boolean disponibilidad,
+	public VHS(int id, String nombre, int año, String director, String disponibilidad,
 						double precio){
 		this.id = id;
 		this.nombre = nombre;
@@ -103,7 +107,7 @@ public class VHS{
 	* Define la disponibilidad del VHS.
 	* @param disponibilidad la disponibilidad del VHS.
 	*/
-	public void setDisponibilidad(boolean disponibilidad){
+	public void setDisponibilidad(String disponibilidad){
 		this.disponibilidad = disponibilidad;
 	}
 
@@ -111,7 +115,7 @@ public class VHS{
 	* Método que nos dice la disponibilidad del VHS.
 	* @return si está disponible o no del VHS.
 	*/
-	public boolean getDisponibilidad(){
+	public String getDisponibilidad(){
 		return disponibilidad;
 	}
 
@@ -129,6 +133,48 @@ public class VHS{
 	*/
 	public double getPrecio(){
 		return precio;
+	}
+
+	@Override public void guarda(BufferedWriter out) throws IOException {
+		out.write(String.format("%d\t%s\t%d\t%s\t%s\t%2.2f\n",
+							id, nombre, año, director, disponibilidad, precio ));
+	}
+
+
+	@Override public boolean carga(BufferedReader in) throws IOException {
+			String vhs = in.readLine();
+			if (vhs == null)
+					return false;
+			vhs = vhs.trim();
+			if (vhs.equals(""))
+					return false;
+			String[] datos = vhs.split("\t");
+			if (datos.length != 6)
+					throw new IOException();
+			try {
+					this.id = Integer.parseInt(datos[0]);
+					this.nombre = datos[1];
+					this.año = Integer.parseInt(datos[2]);
+					this.director = datos[3];
+					this.disponibilidad = datos[4];
+					this.precio = Double.parseDouble(datos[5]);
+			} catch(NumberFormatException e) {
+					throw new IOException();
+			}
+			return true;
+	}
+
+
+	@Override public void actualiza(Pelicula pelicula) {
+			if (!(pelicula instanceof VHS))
+					throw new ClassCastException();
+			VHS vhs = (VHS) pelicula;
+			setId(vhs.getId());
+			setNombre(vhs.getNombre());
+			setAño(vhs.getAño());
+			setDirector(vhs.getDirector());
+			setDisponibilidad(vhs.getDisponibilidad());
+			setPrecio(vhs.getPrecio());
 	}
 
 }
