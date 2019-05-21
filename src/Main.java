@@ -111,7 +111,7 @@ public class Main {
         System.out.printf("Base de datos cargada exitosamente de \"%s\".\n\n",
                           nombreArchivo);
 
-        System.out.println("----- Elementos de la base de datos explicitos -----" + "\n");
+        System.out.println("----- Mostrando elementos de la base de datos explicitos -----" + "\n");
 
         /* Si se quiere quitar que los imprima explicitos se debe modificar el
         * método carga de la clase VHS.
@@ -129,7 +129,7 @@ public class Main {
             System.exit(1);
         }
 
-        System.out.println("----- Elementos de la base de datos implicitos -----" + "\n");
+        System.out.println("----- Mostrando elementos de la base de datos implicitos -----" + "\n");
 
         Lista r = bdd.getPeliculas();
         Lista.Nodo nodo = r.getCabeza();
