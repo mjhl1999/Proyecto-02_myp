@@ -135,12 +135,18 @@ public class VHS implements Pelicula{
 		return precio;
 	}
 
+	/* Método que guarda un VHS en la base de datos.
+	* Simplemente escribimos en la salida cada atributo de un VHS con formato.
+	*/
 	@Override public void guarda(BufferedWriter out) throws IOException {
 		out.write(String.format("%d\t%s\t%d\t%s\t%s\t%2.2f\n",
 							id, nombre, año, director, disponibilidad, precio ));
 	}
 
-
+	/* Método que nos dice si es posible cargar la base de datos, mientras la carga.
+	*	Definimos los atributos del VHS con cada entrada recibida al ejecutar y si
+	* los tiene todos, regresamos true al cargarlo.
+	*/
 	@Override public boolean carga(BufferedReader in) throws IOException {
 			String vhs = in.readLine();
 			if (vhs == null)
@@ -158,6 +164,17 @@ public class VHS implements Pelicula{
 					this.director = datos[3];
 					this.disponibilidad = datos[4];
 					this.precio = Double.parseDouble(datos[5]);
+
+					// Nos sirve para poder imprimir cada atributo de forma explicita en la BDD.
+					System.out.println("___" + "\n \n" + 
+														 "Id: " + id + "\n" +
+			                       "Nombre: " + nombre + "\n" +
+			                       "Año: " + año + "\n" +
+			                       "Director: " + director + "\n" +
+			                       "Disponibilidad: " + disponibilidad + "\n" +
+			                       "Precio: " + precio + "\n" +
+														 "___" + "\n");
+
 			} catch(NumberFormatException e) {
 					throw new IOException();
 			}

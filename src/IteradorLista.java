@@ -10,10 +10,8 @@ public interface IteradorLista<T> extends Iterator<T> {
 
     /**
      * Nos dice si hay un elemento anterior. El método debe regresar
-     * <tt>true</tt>, excepto cuando la lista esté vacía, o el iterador esté
+     * true, excepto cuando la lista esté vacía, o el iterador esté
      * antes del primer elemento.
-     * @return <tt>true</tt> si el iterador tiene un elemento a su izquierda,
-     *         <tt>false</tt> en otro caso.
      */
     public boolean hasPrevious();
 
@@ -24,17 +22,13 @@ public interface IteradorLista<T> extends Iterator<T> {
      */
     public T previous();
 
-    /**
-     * Mueve el iterador a la izquierda del primer elemento. Después de llamar
-     * este método, el método {@link Iterator#hasNext} siempre regresa
-     * <tt>true</tt> si la lista no es vacía.
-     */
+    /** Mueve el iterador a la izquierda del primer elemento. hasNext regresa true
+    * si la lista no es vacía.
+    */
     public void start();
 
-    /**
-     * Mueve el iterador a la derecha del último elemento. Después de llamar
-     * este método, el método {@link IteradorLista#hasPrevious} siempre regresa
-     * <tt>true</tt> si la lista no es vacía.
-     */
+    /** Mueve el iterador a la derecha del último elemento. hasPrevious regresa true
+    * si la lista no es vacía.
+    */
     public void end();
 }

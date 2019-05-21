@@ -18,7 +18,7 @@ public class Main {
     /* Crea una base de datos y la llena a partir de los datos que el usuario
        escriba a través del teclado. Después la guarda en disco duro y la
        regresa. */
-    private static BaseDeDatosPeliculas escritura(String nombreArchivo) {
+    private static VHSFactory escritura(String nombreArchivo) {
         Scanner sc = new Scanner(System.in);
         sc.useDelimiter("\n");
 
@@ -34,7 +34,7 @@ public class Main {
             sc.nextLine();
         }
 
-        BaseDeDatosPeliculas bdd = new BaseDeDatosPeliculas();
+        VHSFactory bdd = new VHSFactory();
 
         do {
             int id;
@@ -64,6 +64,7 @@ public class Main {
                                    "este VHS.\n");
                 continue;
             }
+
             VHS vhs = new VHS(id,
                               nombre,
                               año,
@@ -71,7 +72,9 @@ public class Main {
                               disponibilidad,
                               precio);
 
-            bdd.agregaVHS(vhs);
+            VHSProxy vhsProxy = new VHSProxy(vhs);
+
+            bdd.agregaVHS(vhsProxy);
 
             System.out.println();
         } while (true);
@@ -102,8 +105,17 @@ public class Main {
 
     /* Crea una base de datos y la llena cargándola del disco duro. Después la
        regresa. */
-    private static BaseDeDatosPeliculas lectura(String nombreArchivo) {
-        BaseDeDatosPeliculas bdd = new BaseDeDatosPeliculas();
+    private static VHSFactory lectura(String nombreArchivo) {
+        VHSFactory bdd = new VHSFactory();
+
+        System.out.printf("Base de datos cargada exitosamente de \"%s\".\n\n",
+                          nombreArchivo);
+
+        System.out.println("----- Elementos de la base de datos explicitos -----" + "\n");
+
+        /* Si se quiere quitar que los imprima explicitos se debe modificar el
+        * método carga de la clase VHS.
+        */
 
         try {
             FileInputStream fileIn = new FileInputStream(nombreArchivo);
@@ -117,8 +129,7 @@ public class Main {
             System.exit(1);
         }
 
-        System.out.printf("Base de datos cargada exitosamente de \"%s\".\n\n",
-                          nombreArchivo);
+        System.out.println("----- Elementos de la base de datos implicitos -----" + "\n");
 
         Lista r = bdd.getPeliculas();
         Lista.Nodo nodo = r.getCabeza();
@@ -147,7 +158,7 @@ public class Main {
         if (!bandera.equals("-g") && !bandera.equals("-c"))
             uso();
 
-        BaseDeDatosPeliculas bdd;
+        VHSFactory bdd;
 
         if (bandera.equals("-g"))
             bdd = escritura(nombreArchivo);
