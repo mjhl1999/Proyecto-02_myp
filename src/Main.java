@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * Práctica 5: Excepciones, entrada/salida y enumeraciones.
  */
-public class Main {
+public class Main { 
 
     /* Crea una base de datos y la llena a partir de los datos que el usuario
        escriba a través del teclado. Después la guarda en disco duro y la

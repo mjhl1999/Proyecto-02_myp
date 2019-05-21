@@ -16,6 +16,8 @@ public class Cliente{
   int peliculasRentadas;
   // Nos dice si es cliente frecuente, sirve para los descuentos.
   boolean esFrecuente;
+  // VHS a elegir.
+  String vhs;
 
 
   // Constructor.
@@ -89,6 +91,10 @@ public class Cliente{
 	*/
   public boolean getEsFrecuente(){
     return esFrecuente;
+  }
+
+  public String eligeVHS(String vhs){
+    return vhs;
   }
 
 
