@@ -74,6 +74,21 @@ public abstract class BaseDeDatos {
     } while (true);
   }
 
+  /* Método que carga la base de datos en un archivo de texto.
+  * Lo usamos para sobreescribir un archivo existente, primero vaciamos el archivo,
+  * después agregamos cada VHS recibido (en el formato necesitado para agregar,
+  * para después imprimirlos.
+  */
+  public void dameDatos(BufferedReader in) throws IOException{
+    do{
+      Pelicula pelicula = creaPelicula();
+      if(!pelicula.dameDatos(in))
+        break;
+      agregaVHS(pelicula);
+    } while (true);
+  }
+
+
   /* Nos da el método que crea un VHS con el formato necesario para después poder
   * agregarlo a la base de datos.
   */

@@ -165,8 +165,36 @@ public class VHS implements Pelicula{
 					this.disponibilidad = datos[4];
 					this.precio = Double.parseDouble(datos[5]);
 
+			} catch(NumberFormatException e) {
+					throw new IOException();
+			}
+			return true;
+	}
+
+	/* Método que nos imprime los datos de cada VHS.
+	*/
+	@Override public boolean dameDatos(BufferedReader in) throws IOException {
+			String vhs = in.readLine();
+			if (vhs == null)
+					return false;
+			vhs = vhs.trim();
+			if (vhs.equals(""))
+					return false;
+			String[] datos = vhs.split("\t");
+			if (datos.length != 6)
+					throw new IOException();
+			try {
+					this.id = Integer.parseInt(datos[0]);
+					this.nombre = datos[1];
+					this.año = Integer.parseInt(datos[2]);
+					this.director = datos[3];
+					this.disponibilidad = datos[4];
+					this.precio = Double.parseDouble(datos[5]);
+
+					System.out.println("\n----- Mostrando elementos de la base de datos explicitos -----" + "\n");
+
 					// Nos sirve para poder imprimir cada atributo de forma explicita en la BDD.
-					System.out.println("___" + "\n \n" + 
+					System.out.println("___" + "\n \n" +
 														 "Id: " + id + "\n" +
 			                       "Nombre: " + nombre + "\n" +
 			                       "Año: " + año + "\n" +

@@ -379,7 +379,7 @@ public class Lista {
         String resultado = "[";
         Nodo nodo = cabeza;
         while (nodo != null) {
-            if (nodo.elemento.equals(rabo.elemento))
+            if (nodo.getSiguiente() == null)
                 resultado += String.format("%s", nodo.elemento);
             else
                 resultado += String.format("%s, ", nodo.elemento);

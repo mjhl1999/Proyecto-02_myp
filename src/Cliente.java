@@ -1,101 +1,62 @@
-public class Cliente{
+import java.util.InputMismatchException;
+import java.util.Random;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.InputStreamReader;
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 /**
-* Clase para definir como serán los clientes que adquieran los Vhs de la tienda.
--> nombre: Nos dice el nombre del cliente.
--> cuenta: El número de cuenta del cliente (de exactamente 5 dígitos).
--> peliculasRentadas: Nos dice el número de peliculas rentadas que tiene el cliente.
--> esFrecuente: Nos dice si es un cliente recuente o si es solo de paso.
-*/
+ * Práctica 5: Excepciones, entrada/salida y enumeraciones.
+ */
+public class Cliente {
 
-  // El nombre del cliente.
-  String nombre;
-  // El número de cuenta del cliente.
-  int cuenta;
-  // El número de peliculas rentadas.
-  int peliculasRentadas;
-  // Nos dice si es cliente frecuente, sirve para los descuentos.
-  boolean esFrecuente;
-  // VHS a elegir.
-  String vhs;
+    public static Lista elegidas(VHSFactory base, Lista peli){
+        base = new VHSFactory();
+        //Lista seleccion = new Lista();
 
+        //seleccion.agregaFinal(peli);
 
-  // Constructor.
-  public Cliente(String nombre, int cuenta, int peliculasRentadas, boolean esFrecuente){
-    this.nombre = nombre;
-    this.cuenta = cuenta;
-    this.peliculasRentadas = peliculasRentadas;
-    this.esFrecuente = esFrecuente;
-  }
+        System.out.println("\n ---------- \n" + "Las peliculas elegidas son: " + peli.toString() +
+                          "\n ---------- \n");
 
+        return peli;
+    }
 
-  /**
-	* Define el nombre del cliente.
-  * @param nombre el nombre del cliente.
-	*/
-  public void setNombre(String nombre){
-    this.nombre = nombre;
-  }
+    /* Crea una base de datos y la llena cargándola del disco duro. Después la
+       regresa. */
+    public static VHSFactory lectura(String nombreArchivo) {
+        VHSFactory bdd = new VHSFactory();
 
-  /**
-	* Método que nos regresa el nombre del cliente.
-  * @return el nombre del cliente.
-	*/
-  public String getNombre(){
-    return nombre;
-  }
+        try {
+            FileInputStream fileIn = new FileInputStream(nombreArchivo);
+            InputStreamReader isIn = new InputStreamReader(fileIn);
+            BufferedReader in = new BufferedReader(isIn);
+            bdd.dameDatos(in);
+            in.close();
+        } catch (IOException ioe) {
+            System.out.printf("\nNo pude cargar del archivo \"%s\".\n\n",
+                              nombreArchivo);
+            System.exit(1);
+        }
 
-  /**
-  * Define el número de cuenta del cliente.
-	* @param cuenta el número de cuenta del cliente.
-	*/
-  public void setCuenta(int cuenta){
-    this.cuenta = cuenta;
-  }
+        System.out.println("----- Mostrando elementos para que el cliente escoja un VHS -----" + "\n");
 
-  /**
-  * Método que nos regresa el número de cuenta del cliente.
-	* @return el número de cuenta del cliente.
-	*/
-  public int getCuenta(){
-    return cuenta;
-  }
+        Lista r = bdd.getPeliculas();
+        Lista.Nodo nodo = r.getCabeza();
+        for (int i = 0; i < r.getLongitud(); i++ ) {
+          System.out.println(i + ". " + nodo.get().toString() + "\n");
+          nodo = nodo.getSiguiente();
+        }
 
-  /**
-	* Define el número de peliculas rentadas que tiene el cliente.
-	* @param peliculasRentadas el número de peliculas rentadas que tiene el cliente.
-	*/
-  public void setRentadas(int peliculasRentadas){
-    this.peliculasRentadas = peliculasRentadas;
-  }
+        System.out.printf("Base de datos cargada exitosamente de \"%s\".\n\n",
+                          nombreArchivo);
 
-  /**
-  * Método que nos regresa el número de peliculas rentadas que tiene el cliente.
-	* @return el número de peliculas rentadas que tiene cliente.
-	*/
-  public int getRentadas(){
-    return peliculasRentadas;
-  }
-
-  /**
-	* Define si el cliente es frecuente o no.
-	* @param esFrecuente si el cliente es frecuente o no.
-	*/
-  public void setEsFrecuente(boolean esFrecuente){
-    this.esFrecuente = esFrecuente;
-  }
-
-  /**
-  * Método que nos regresa si el cliente es frecuente.
-	* @return si el cliente es frecuente.
-	*/
-  public boolean getEsFrecuente(){
-    return esFrecuente;
-  }
-
-  public String eligeVHS(String vhs){
-    return vhs;
-  }
-
+        return bdd;
+    }
 
 }

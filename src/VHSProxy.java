@@ -26,6 +26,13 @@ public class VHSProxy implements Pelicula{
 			return vhs.carga(in);
 	}
 
+  /* Método que nos da los datos de un VHS.
+  * Simplemente mandamos llamar al método que nos da los datos de desde VHS.
+  */
+	@Override public boolean dameDatos(BufferedReader in) throws IOException {
+			return vhs.dameDatos(in);
+	}
+
   /* Método que actualiza un VHS.
   * Simplemente mandamos llamar al método que actualiza desde VHS.
   */

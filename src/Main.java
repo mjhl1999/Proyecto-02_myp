@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * Práctica 5: Excepciones, entrada/salida y enumeraciones.
  */
-public class Main { 
+public class Main {
 
     /* Crea una base de datos y la llena a partir de los datos que el usuario
        escriba a través del teclado. Después la guarda en disco duro y la
@@ -62,7 +62,7 @@ public class Main {
             } catch (InputMismatchException ime) {
                 System.out.println("\n Entrada inválida: se descartará " +
                                    "este VHS.\n");
-                continue;
+                break;
             }
 
             VHS vhs = new VHS(id,
@@ -108,10 +108,6 @@ public class Main {
     private static VHSFactory lectura(String nombreArchivo) {
         VHSFactory bdd = new VHSFactory();
 
-        System.out.printf("Base de datos cargada exitosamente de \"%s\".\n\n",
-                          nombreArchivo);
-
-        System.out.println("----- Mostrando elementos de la base de datos explicitos -----" + "\n");
 
         /* Si se quiere quitar que los imprima explicitos se debe modificar el
         * método carga de la clase VHS.
@@ -121,13 +117,15 @@ public class Main {
             FileInputStream fileIn = new FileInputStream(nombreArchivo);
             InputStreamReader isIn = new InputStreamReader(fileIn);
             BufferedReader in = new BufferedReader(isIn);
-            bdd.carga(in);
+            //bdd.carga(in);
+            bdd.dameDatos(in);
             in.close();
         } catch (IOException ioe) {
-            System.out.printf("No pude cargar del archivo \"%s\".\n",
+            System.out.printf("\nNo pude cargar del archivo \"%s\".\n\n",
                               nombreArchivo);
             System.exit(1);
         }
+
 
         System.out.println("----- Mostrando elementos de la base de datos implicitos -----" + "\n");
 
@@ -137,6 +135,14 @@ public class Main {
             System.out.println(nodo.get().toString() + "\n");
             nodo = nodo.getSiguiente();
         }
+
+        int n = bdd.getNumPeliculas();
+
+        if(n == 0)
+          System.out.println("No hay elementos. \n");
+
+        System.out.printf("\nBase de datos cargada exitosamente de \"%s\".\n\n",
+                          nombreArchivo);
 
         return bdd;
     }
